@@ -39,9 +39,8 @@ The wireframe above presents all important bits from a functional point of view.
 
 * You should not trust static JSON. Please use it as it would be an API response,
 * Components should be adjusted to the SEO needs – please note the application does not change the URL in any interaction except row click,
-* We will appreciate if component is following accessibility recommendations,
-* Application does not have to be adjusted to mobile devices,
-* There are a couple of decisions to make e.g. how the application should behave when some datapoints are missing. Please decide which approach is the best and explain.
+* Aplication is for desktop use only,
+* We will appreciate component which follows accessibility recommendations.
 
 #### Things we will test
 
