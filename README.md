@@ -6,9 +6,7 @@ You will be asked to develop a complete React.js component based on a wireframe 
 
 The task is expected to take between **1 and 2 hours** based on your experience. We really hope to see you shortly on board, good luck! 🤘🏼
 
----
-
-### The application
+## The application
 
 The application is in fact an interactive table which lists applications delivered in a json file (so yes, this is the application listing application 😅). Generally speaking, users should be given the ability to select category of applications listed in the table and easily distinguish Mature from Beta applications.
 
@@ -18,7 +16,7 @@ Wireframing is a way to design a website service at the structural level. A wire
 
 *Source: [ExperienceUX](https://www.experienceux.co.uk/faqs/what-is-wireframing/)*
 
-![wireframe](/Users/maxmatloka/Work/Statik/recruitment/react-recruitment-task/.private/wireframe.png)
+![wireframe](./.private/wireframe.png)
 
 The wireframe above presents all important bits from a functional point of view. The application consists of 3 important components:
 
@@ -56,9 +54,7 @@ The application will be tested in the following ways:
 * Code standards,
 * Code comments.
 
-----
-
-### How to start
+## How to start
 
 This repository is build on top of `create-react-app`. Simply run `npm start`  to start 😁. In case you need more detailed explanation, please feel free to visit [their documentation](https://github.com/facebook/create-react-app).
 
