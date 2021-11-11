@@ -1,26 +1,37 @@
-import logo from './logo.svg';
-import dataset from './dataset';
-import './App.css';
+import { useEffect } from "react";
+import dataset from "./dataset";
+import "./assets/App.scss";
+import Tabs from "./components/Tabs";
+import Accordion from "./components/Accordion";
 
-function App() {
+const initialState = {
+  selectedTab: 0,
+  tabsData: [],
+  apps: [],
+  filteredApps: [],
+};
+
+const App = () => {
+  // mock the state for now
+  const state = initialState;
+  useEffect(() => {
+    // Run the logic here
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload. There are {dataset.length} applications provided in a dataset.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Tabs
+        tabsData={state.tabsData}
+        selectedTab={state.selectedTab}
+        selectedTabHandler={(selectedTab) => console.log(selectedTab)}
+      />
+      <div className="accordions">
+        {state.filteredApps.map((app) => (
+          <Accordion items={app.items} title={app.title} key={app.key} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
