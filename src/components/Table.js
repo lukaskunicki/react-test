@@ -15,14 +15,9 @@ const TableApp = ({ items }) => {
       </thead>
       <tbody>
         {items.map((item) => {
-          const columns = [
-            item.app,
-            item.author?.name,
-            item.version,
-            item.type,
-          ];
+          const columns = [item.app, item.author?.name, item.version];
           return (
-            <tr key={item.id}>
+            <tr key={item.id} tabIndex={0}>
               {columns.map((col, index) => (
                 <td key={index}>{col}</td>
               ))}
