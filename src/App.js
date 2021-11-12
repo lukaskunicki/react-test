@@ -55,11 +55,11 @@ const App = () => {
 
   const fetchDataSet = async () => {
     // simulate larger response
-    let res = [];
-    for (let i = 0; i < 50; i++) {
-      res = [...res, ...dataset];
-    }
-    return res;
+    // let res = [];
+    // for (let i = 0; i < 50; i++) {
+    //   res = [...res, ...dataset];
+    // }
+    // return res;
     // We would normally fetch an API with async call and handle possible errors
     return dataset;
   };
