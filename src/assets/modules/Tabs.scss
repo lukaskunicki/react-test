@@ -1,0 +1,17 @@
+.tabs-container {
+  display: flex;
+
+  &__tab {
+    border: 1px solid black;
+    padding: 10px 25px;
+    cursor: pointer;
+
+    &:focus {
+      outline: 1px solid black;
+    }
+
+    &--active {
+      background: rgb(201, 201, 201);
+    }
+  }
+}

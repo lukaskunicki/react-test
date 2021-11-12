@@ -1,0 +1,34 @@
+.app-table {
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+
+  tr {
+    cursor: pointer;
+
+    &:nth-child(odd) {
+      background: rgb(240, 240, 240);
+    }
+    &:focus {
+      outline: 2px solid black;
+    }
+
+    th {
+      background: rgb(197, 197, 197);
+    }
+
+    td,
+    th {
+      border: 2px solid black;
+      border-left: 0;
+      padding: 5px;
+      text-align: left;
+      &:nth-child(even) {
+        text-align: right;
+      }
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { isActionKey } from "../helpers/keyCodeChecker";
 
 const tableHeaders = ["Application Name", "Author", "Version"];
 
-const TableApp = ({ items, itemsLimit }) => {
+const Table = ({ items, itemsLimit }) => {
   // Helper function for embedding the string values safely
   const safeEmbed = (value) => {
     return value || "-";
@@ -31,12 +31,12 @@ const TableApp = ({ items, itemsLimit }) => {
         </tr>
       </thead>
       <tbody>
-        {items.slice(0, itemsLimit).map((item, k) => {
+        {items.slice(0, itemsLimit).map((item) => {
           const columns = [item.app, item.author?.name, item.version];
           return (
             <tr
               tabIndex={0}
-              key={k}
+              key={item.id}
               onClick={() => appClickHandler(item.app)}
               onKeyDown={(e) => keyDownHandler(e, item.app)}
             >
@@ -51,4 +51,4 @@ const TableApp = ({ items, itemsLimit }) => {
   );
 };
 
-export default TableApp;
+export default Table;

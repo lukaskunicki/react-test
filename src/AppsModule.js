@@ -15,7 +15,7 @@ const initialState = {
 };
 const DIVIDER_VERSION = "1.0.0";
 
-const App = () => {
+const AppsModule = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
   const initializeAppData = useCallback(async () => {
@@ -30,6 +30,7 @@ const App = () => {
       versionChecker(e.version, DIVIDER_VERSION)
     );
 
+    // Handle initial filtering
     const filteredApps = [matureApps, betaApps].map((type) =>
       type.filter((item) => item.type === uniqueTabs[0])
     );
@@ -64,11 +65,11 @@ const App = () => {
 
   const fetchDataSet = async () => {
     // simulate larger response
-    let res = [];
-    for (let i = 0; i < 50; i++) {
-      res = [...res, ...dataset];
-    }
-    return res;
+    // let res = [];
+    // for (let i = 0; i < 50; i++) {
+    //   res = [...res, ...dataset];
+    // }
+    // return res;
     // We would normally fetch an API with async call and handle possible errors
     return dataset;
   };
@@ -93,4 +94,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppsModule;

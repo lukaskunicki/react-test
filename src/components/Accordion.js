@@ -44,7 +44,12 @@ const Accordion = ({ items, title }) => {
   }, [items]);
 
   return (
-    <div className="accordions__item" tabIndex={0} onKeyDown={keyDownHandler}>
+    <div
+      className="accordions__item"
+      tabIndex={0}
+      onKeyDown={keyDownHandler}
+      aria-expanded={state.expanded}
+    >
       <div className="accordions__item__title" onClick={expandedHandler}>
         <span className="accordions__item__title__caption">{title}</span>
         <span className="accordions__item__title__icon">
@@ -55,6 +60,7 @@ const Accordion = ({ items, title }) => {
         className={accordionClasses}
         onScroll={(e) => scrollHandler(e)}
         ref={accordionContent}
+        aria-hidden={!state.expanded}
       >
         {state.expanded ? (
           <Table items={items} itemsLimit={state.itemsLimit} />
