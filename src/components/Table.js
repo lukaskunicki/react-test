@@ -1,7 +1,17 @@
 import React from "react";
 const tableHeaders = ["Application Name", "Author", "Version"];
 
-const TableApp = ({ items }) => {
+const TableApp = ({ items, itemsLimit }) => {
+  // Helper function for embedding the string values safely
+  const safeEmbed = (value) => {
+    return value || "-";
+  };
+
+  const appClickHandler = (appName) => {
+    if (!appName) return;
+    window.location.hash = appName;
+  };
+
   return (
     <table className="app-table">
       <thead>
@@ -14,12 +24,16 @@ const TableApp = ({ items }) => {
         </tr>
       </thead>
       <tbody>
-        {items.map((item) => {
+        {items.slice(0, itemsLimit).map((item) => {
           const columns = [item.app, item.author?.name, item.version];
           return (
-            <tr key={item.id} tabIndex={0}>
+            <tr
+              tabIndex={0}
+              key={item.id}
+              onClick={() => appClickHandler(item.app)}
+            >
               {columns.map((col, index) => (
-                <td key={index}>{col}</td>
+                <td key={index}>{safeEmbed(col)}</td>
               ))}
             </tr>
           );
