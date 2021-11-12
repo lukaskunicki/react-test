@@ -3,24 +3,34 @@ import appTitleMapping from "../config/appTitleMapping";
 const appReducer = (state, action) => {
   switch (action.type) {
     case "INITIALIZE_APPS":
-      const newAppsData = [
-        {
-          key: "mature",
-          title: appTitleMapping["mature"],
-          items: [...action.payload.mature],
-        },
-        {
-          key: "beta",
-          title: appTitleMapping["beta"],
-          items: [...action.payload.beta],
-        },
-      ];
       return {
         ...state,
         tabsData: action.payload.tabsData,
         selectedTab: action.payload.tabsData[0],
-        apps: [...newAppsData],
-        filteredApps: [...newAppsData],
+        apps: [
+          {
+            key: "mature",
+            title: appTitleMapping["mature"],
+            items: [...action.payload.mature],
+          },
+          {
+            key: "beta",
+            title: appTitleMapping["beta"],
+            items: [...action.payload.beta],
+          },
+        ],
+        filteredApps: [
+          {
+            key: "mature",
+            title: appTitleMapping["mature"],
+            items: [...action.payload.filteredApps[0]],
+          },
+          {
+            key: "beta",
+            title: appTitleMapping["beta"],
+            items: [...action.payload.filteredApps[1]],
+          },
+        ],
       };
     case "SET_TABS":
       return { ...state, tabsData: action.payload };

@@ -22,7 +22,6 @@ const App = () => {
     // We shouldn't rely on useCallback only,
     // so let's make sure the fech won't be executed without a need
     if (state.apps.length) return;
-
     const appsData = await fetchDataSet();
     const uniqueTabs = [
       ...new Set(appsData.map((item) => item.type).filter((item) => item)),
@@ -30,9 +29,19 @@ const App = () => {
     const [matureApps, betaApps] = arrayDivider(appsData, (e) =>
       versionChecker(e.version, DIVIDER_VERSION)
     );
+
+    const filteredApps = [matureApps, betaApps].map((type) =>
+      type.filter((item) => item.type === uniqueTabs[0])
+    );
+
     dispatch({
       type: "INITIALIZE_APPS",
-      payload: { tabsData: uniqueTabs, beta: betaApps, mature: matureApps },
+      payload: {
+        tabsData: uniqueTabs,
+        beta: betaApps,
+        mature: matureApps,
+        filteredApps: filteredApps,
+      },
     });
   }, [state.apps]);
 
@@ -55,11 +64,11 @@ const App = () => {
 
   const fetchDataSet = async () => {
     // simulate larger response
-    // let res = [];
-    // for (let i = 0; i < 50; i++) {
-    //   res = [...res, ...dataset];
-    // }
-    // return res;
+    let res = [];
+    for (let i = 0; i < 50; i++) {
+      res = [...res, ...dataset];
+    }
+    return res;
     // We would normally fetch an API with async call and handle possible errors
     return dataset;
   };

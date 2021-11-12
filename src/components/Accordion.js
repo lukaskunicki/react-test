@@ -1,8 +1,8 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect, useRef } from "react";
 import Table from "./Table";
 import MinusIcon from "./icons/MinusIcon";
 import PlusIcon from "./icons/PlusIcon";
-import { isActionKey } from "../helpers/keyCodeChecker";
+import { isToggleKey } from "../helpers/keyCodeChecker";
 import classNameHelper from "../helpers/classNameHelper";
 import accordionReducer from "../reducers/accordionReducer";
 
@@ -13,6 +13,7 @@ const initialState = {
 
 const Accordion = ({ items, title }) => {
   const [state, dispatch] = useReducer(accordionReducer, initialState);
+  const accordionContent = useRef(null);
   const accordionClasses = classNameHelper("accordions__item__content", {
     "accordions__item__content--expanded": state.expanded,
   });
@@ -24,7 +25,7 @@ const Accordion = ({ items, title }) => {
   };
 
   const keyDownHandler = (e) => {
-    if (!isActionKey(e)) return;
+    if (!isToggleKey(e)) return;
     expandedHandler();
   };
 
@@ -36,6 +37,12 @@ const Accordion = ({ items, title }) => {
       dispatch({ type: "INCREASE_LIMIT", payload: 200 });
   };
 
+  useEffect(() => {
+    accordionContent.current.scrollTop = 0;
+    // We need to make sure we start with a default limit on tab change
+    dispatch({ type: "RESET_LIMIT" });
+  }, [items]);
+
   return (
     <div className="accordions__item" tabIndex={0} onKeyDown={keyDownHandler}>
       <div className="accordions__item__title" onClick={expandedHandler}>
@@ -44,7 +51,11 @@ const Accordion = ({ items, title }) => {
           {state.expanded ? <MinusIcon /> : <PlusIcon />}
         </span>
       </div>
-      <div className={accordionClasses} onScroll={(e) => scrollHandler(e)}>
+      <div
+        className={accordionClasses}
+        onScroll={(e) => scrollHandler(e)}
+        ref={accordionContent}
+      >
         {state.expanded ? (
           <Table items={items} itemsLimit={state.itemsLimit} />
         ) : null}
