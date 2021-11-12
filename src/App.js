@@ -36,6 +36,23 @@ const App = () => {
     });
   }, [state.apps]);
 
+  const handleAppsFiltering = (selectedTab) => {
+    const newApps = [...state.apps];
+
+    const filterResults = newApps.map((app) =>
+      app.items.filter((item) => item.type === selectedTab)
+    );
+
+    dispatch({
+      type: "FILTER_APPS",
+      payload: {
+        selectedTab: selectedTab,
+        mature: filterResults[0] || [],
+        beta: filterResults[1] || [],
+      },
+    });
+  };
+
   const fetchDataSet = async () => {
     // We would normally fetch an API with async call and handle possible errors
     return dataset;
@@ -50,7 +67,7 @@ const App = () => {
       <Tabs
         tabsData={state.tabsData}
         selectedTab={state.selectedTab}
-        selectedTabHandler={(selectedTab) => console.log(selectedTab)}
+        selectedTabHandler={(selectedTab) => handleAppsFiltering(selectedTab)}
       />
       <div className="accordions">
         {state.filteredApps.map((app) => (

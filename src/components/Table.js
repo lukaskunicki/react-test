@@ -15,7 +15,12 @@ const TableApp = ({ items }) => {
       </thead>
       <tbody>
         {items.map((item) => {
-          const columns = [item.app, item.author?.name, item.version];
+          const columns = [
+            item.app,
+            item.author?.name,
+            item.version,
+            item.type,
+          ];
           return (
             <tr key={item.id}>
               {columns.map((col, index) => (
