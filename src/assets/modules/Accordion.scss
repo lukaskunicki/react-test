@@ -1,3 +1,5 @@
+@import "../variables/variables.scss";
+
 .accordions {
   padding: 50px 0;
   &__item {
@@ -5,9 +7,6 @@
     border-style: solid;
     &:first-of-type {
       border-bottom: 0;
-    }
-    &:focus {
-      outline: 1px solid black;
     }
 
     &__title {
@@ -23,13 +22,13 @@
       }
     }
     &__content {
-      background-color: white;
+      background-color: $color--white;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.2s ease-out;
 
       &--expanded {
-        max-height: calc(100vh - 150px);
+        max-height: calc(100vh - 250px);
         overflow-y: auto;
       }
     }

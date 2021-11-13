@@ -1,3 +1,6 @@
+@import "../variables/variables.scss";
+@import "../variables/variables.scss";
+
 .app-table {
   border: none;
   border-collapse: collapse;
@@ -7,19 +10,20 @@
     cursor: pointer;
 
     &:nth-child(odd) {
-      background: rgb(240, 240, 240);
+      background: $color--grey--light;
     }
     &:focus {
-      outline: 2px solid black;
+      box-shadow: inset 0 0 0 2px $color--black;
+      outline: 1px solid $color--black;
     }
 
     th {
-      background: rgb(197, 197, 197);
+      background: $color--grey--medium;
     }
 
     td,
     th {
-      border: 2px solid black;
+      border: 2px solid $color--black;
       border-left: 0;
       padding: 5px;
       text-align: left;
