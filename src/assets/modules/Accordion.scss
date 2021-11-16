@@ -28,8 +28,7 @@
       transition: max-height 0.2s ease-out;
 
       &--expanded {
-        max-height: calc(100vh - 250px);
-        overflow-y: auto;
+        max-height: 100%;
       }
     }
   }

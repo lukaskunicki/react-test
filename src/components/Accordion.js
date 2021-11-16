@@ -1,27 +1,20 @@
-import React, { useReducer, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Table from "./Table";
 import MinusIcon from "./icons/MinusIcon";
 import PlusIcon from "./icons/PlusIcon";
 import { isToggleKey } from "../helpers/keyCodeChecker";
 import classNameHelper from "../helpers/classNameHelper";
-import accordionReducer from "../reducers/accordionReducer";
-
-const initialState = {
-  expanded: false,
-  itemsLimit: 100,
-};
 
 const Accordion = ({ items, title }) => {
-  const [state, dispatch] = useReducer(accordionReducer, initialState);
-  const accordionContent = useRef(null);
+  const [expanded, setExpanded] = useState(false);
   const accordionClasses = classNameHelper("accordions__item__content", {
-    "accordions__item__content--expanded": state.expanded,
+    "accordions__item__content--expanded": expanded,
   });
 
   const expandedHandler = () => {
     if (window.location.hash.length) window.history.pushState(null, null, " ");
-    if (state.expanded) return dispatch({ type: "COLLAPSE" });
-    return dispatch({ type: "EXPAND" });
+    if (expanded) return setExpanded(false);
+    setExpanded(true);
   };
 
   const keyDownHandler = (e) => {
@@ -29,42 +22,21 @@ const Accordion = ({ items, title }) => {
     expandedHandler();
   };
 
-  const scrollHandler = (e) => {
-    const element = e.target;
-    const targetHeight = element.offsetHeight + element.scrollTop + 100;
-    if (targetHeight <= element.scrollHeight) return;
-    if (state.itemsLimit < items.length)
-      dispatch({ type: "INCREASE_LIMIT", payload: 200 });
-  };
-
-  useEffect(() => {
-    accordionContent.current.scrollTop = 0;
-    // We need to make sure we start with a default limit on tab change
-    dispatch({ type: "RESET_LIMIT" });
-  }, [items]);
-
   return (
     <div
       className="accordions__item"
       tabIndex={0}
       onKeyDown={keyDownHandler}
-      aria-expanded={state.expanded}
+      aria-expanded={expanded}
     >
       <div className="accordions__item__title" onClick={expandedHandler}>
         <span className="accordions__item__title__caption">{title}</span>
         <span className="accordions__item__title__icon">
-          {state.expanded ? <MinusIcon /> : <PlusIcon />}
+          {expanded ? <MinusIcon /> : <PlusIcon />}
         </span>
       </div>
-      <div
-        className={accordionClasses}
-        onScroll={(e) => scrollHandler(e)}
-        ref={accordionContent}
-        aria-hidden={!state.expanded}
-      >
-        {state.expanded ? (
-          <Table items={items} itemsLimit={state.itemsLimit} />
-        ) : null}
+      <div className={accordionClasses} aria-hidden={!expanded}>
+        {expanded ? <Table items={items} /> : null}
       </div>
     </div>
   );

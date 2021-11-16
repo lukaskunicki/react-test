@@ -20,7 +20,7 @@ const AppsModule = () => {
 
   const initializeAppData = useCallback(async () => {
     // We shouldn't rely on useCallback only,
-    // so let's make sure the fech won't be executed without a need
+    // so let's make sure the fetch won't be executed without a need
     if (state.apps.length) return;
     const appsData = await fetchDataSet();
     const uniqueTabs = [
@@ -65,6 +65,9 @@ const AppsModule = () => {
 
   const fetchDataSet = async () => {
     // We would normally fetch an API with async call and handle possible errors
+    let res = [...dataset];
+    for (let i = 0; i < 100; i++) res = [...res, ...dataset];
+    return res;
     return dataset;
   };
 

@@ -1,37 +1,42 @@
 @import "../variables/variables.scss";
 @import "../variables/variables.scss";
 
-.app-table {
-  border: none;
-  border-collapse: collapse;
-  width: 100%;
+.table-container {
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
 
-  tr {
-    cursor: pointer;
+  .app-table {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
 
-    &:nth-child(odd) {
-      background: $color--grey--light;
-    }
-    &:focus {
-      box-shadow: inset 0 0 0 2px $color--black;
-      outline: 1px solid $color--black;
-    }
+    tr {
+      cursor: pointer;
 
-    th {
-      background: $color--grey--medium;
-    }
-
-    td,
-    th {
-      border: 2px solid $color--black;
-      border-left: 0;
-      padding: 5px;
-      text-align: left;
-      &:nth-child(even) {
-        text-align: right;
+      &:nth-child(odd) {
+        background: $color--grey--light;
       }
-      &:last-child {
-        border-right: 0;
+      &:focus {
+        box-shadow: inset 0 0 0 2px $color--black;
+        outline: 1px solid $color--black;
+      }
+
+      th {
+        background: $color--grey--medium;
+      }
+
+      td,
+      th {
+        border: 2px solid $color--black;
+        border-left: 0;
+        padding: 5px;
+        text-align: left;
+        &:nth-child(even) {
+          text-align: right;
+        }
+        &:last-child {
+          border-right: 0;
+        }
       }
     }
   }
