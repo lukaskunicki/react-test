@@ -2,8 +2,9 @@ import React, { useRef } from "react";
 import TableRow from "./TableRow";
 import useLoadMoreScroll from "../hooks/useLoadMoreScroll";
 import { isActionKey } from "../helpers/keyCodeChecker";
+import pathResolver from "../helpers/pathResolver";
 
-const Table = ({ items, headers }) => {
+const Table = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
   const scrollData = {
     defaultLimit: 100,
@@ -42,7 +43,7 @@ const Table = ({ items, headers }) => {
         </thead>
         <tbody>
           {items.slice(0, itemsLimit).map((item, k) => {
-            const columns = [item.app, item.author?.name, item.version];
+            const columns = columnPaths.map((path) => pathResolver(item, path));
             return (
               <TableRow
                 clickHandler={appClickHandler}

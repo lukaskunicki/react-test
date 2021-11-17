@@ -4,4 +4,6 @@ const appTitleMapping = {
 };
 const tableHeaders = ["Application Name", "Author", "Version"];
 
-export { appTitleMapping, tableHeaders };
+const columnsPaths = ["app", "author.name", "version"];
+
+export { appTitleMapping, tableHeaders, columnsPaths };
