@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useCallback } from "react";
 import dataset from "../dataset";
-import appReducer from "../reducers/appReducer";
+import appsModuleReducer from "../reducers/appsModuleReducer";
 import arrayDivider from "../helpers/arrayDivider";
 import versionChecker from "../helpers/versionChecker";
 import appsFilteringHelper from "../helpers/appsFilteringHelper";
@@ -14,7 +14,7 @@ const initialState = {
 const DIVIDER_VERSION = "1.0.0";
 
 const useAppsModule = () => {
-  const [state, dispatch] = useReducer(appReducer, initialState);
+  const [state, dispatch] = useReducer(appsModuleReducer, initialState);
 
   const initializeAppData = useCallback(async () => {
     // We shouldn't rely on useCallback only,

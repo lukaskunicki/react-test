@@ -4,6 +4,7 @@ import MinusIcon from "./icons/MinusIcon";
 import PlusIcon from "./icons/PlusIcon";
 import { isToggleKey } from "../helpers/keyCodeChecker";
 import classNameHelper from "../helpers/classNameHelper";
+import { tableHeaders } from "../config/appDictionary";
 
 const Accordion = ({ items, title }) => {
   const [expanded, setExpanded] = useState(false);
@@ -32,11 +33,17 @@ const Accordion = ({ items, title }) => {
       <div className="accordions__item__title" onClick={expandedHandler}>
         <span className="accordions__item__title__caption">{title}</span>
         <span className="accordions__item__title__icon">
-          {expanded ? <MinusIcon /> : <PlusIcon />}
+          {expanded ? (
+            <MinusIcon key="Minus icon" />
+          ) : (
+            <PlusIcon key="Plus icon" />
+          )}
         </span>
       </div>
       <div className={accordionClasses} aria-hidden={!expanded}>
-        {expanded ? <Table items={items} /> : null}
+        {expanded ? (
+          <Table items={items} headers={tableHeaders} key="Accordion table" />
+        ) : null}
       </div>
     </div>
   );

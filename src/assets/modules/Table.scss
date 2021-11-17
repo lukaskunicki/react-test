@@ -1,8 +1,17 @@
 @import "../variables/variables.scss";
 @import "../variables/variables.scss";
 
+@keyframes slideInDown {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: calc(100vh - 250px);
+  }
+}
+
 .table-container {
-  max-height: calc(100vh - 250px);
+  animation: slideInDown 0.3s forwards;
   overflow-y: auto;
 
   .app-table {

@@ -1,19 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
-import { isActionKey } from "../helpers/keyCodeChecker";
+import React, { useRef } from "react";
 import TableRow from "./TableRow";
-const tableHeaders = ["Application Name", "Author", "Version"];
+import useLoadMoreScroll from "../hooks/useLoadMoreScroll";
+import { isActionKey } from "../helpers/keyCodeChecker";
 
-const Table = ({ items }) => {
-  const [itemsLimit, setItemsLimit] = useState(100);
+const Table = ({ items, headers }) => {
   const tableContainer = useRef(null);
-
-  const scrollHandler = (e) => {
-    const element = e.target;
-    const targetHeight = element.offsetHeight + element.scrollTop + 100;
-    if (targetHeight <= element.scrollHeight) return;
-    if (itemsLimit < items.length)
-      setItemsLimit((prevState) => prevState + 200);
+  const scrollData = {
+    defaultLimit: 100,
+    items: items,
   };
+  const { itemsLimit, scrollHandler } = useLoadMoreScroll(
+    tableContainer,
+    scrollData
+  );
 
   const appClickHandler = (appName) => {
     if (!appName) return;
@@ -25,11 +24,6 @@ const Table = ({ items }) => {
     appClickHandler(appName);
   };
 
-  useEffect(() => {
-    tableContainer.current.scrollTop = 0;
-    setItemsLimit(100);
-  }, [items]);
-
   return (
     <div
       className="table-container"
@@ -39,7 +33,7 @@ const Table = ({ items }) => {
       <table className="app-table">
         <thead>
           <tr>
-            {tableHeaders.map((header) => (
+            {headers.map((header) => (
               <th key={header} scope="col">
                 {header}
               </th>

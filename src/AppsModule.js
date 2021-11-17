@@ -1,5 +1,5 @@
 import React from "react";
-import "./assets/App.scss";
+import "./assets/AppsModule.scss";
 import Tabs from "./components/Tabs";
 import Accordion from "./components/Accordion";
 import useAppsModule from "./hooks/useAppsModule";

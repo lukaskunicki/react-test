@@ -1,6 +1,6 @@
-import appTitleMapping from "../config/appTitleMapping";
+import { appTitleMapping } from "../config/appDictionary";
 
-const appReducer = (state, action) => {
+const appsModuleReducer = (state, action) => {
   switch (action.type) {
     case "INITIALIZE_APPS":
       return {
@@ -58,4 +58,4 @@ const appReducer = (state, action) => {
   }
 };
 
-export default appReducer;
+export default appsModuleReducer;
