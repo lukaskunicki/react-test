@@ -42,7 +42,7 @@ const Table = ({ items, headers, columnPaths }) => {
           </tr>
         </thead>
         <tbody>
-          {items.slice(0, itemsLimit).map((item, k) => {
+          {items.slice(0, itemsLimit).map((item) => {
             const columns = columnPaths.map((path) => pathResolver(item, path));
             return (
               <TableRow
@@ -50,7 +50,7 @@ const Table = ({ items, headers, columnPaths }) => {
                 keyDownHandler={keyDownHandler}
                 handlerParameter={item.app}
                 columns={columns}
-                key={k}
+                key={item.id}
               />
             );
           })}

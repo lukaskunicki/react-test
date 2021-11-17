@@ -56,9 +56,9 @@ const useAppsModule = () => {
 
   const fetchDataSet = async () => {
     // We would normally fetch an API with async call and handle possible errors
-    let res = [...dataset];
-    for (let i = 0; i < 100; i++) res = [...res, ...dataset];
-    return res;
+    // let res = [...dataset];
+    // for (let i = 0; i < 100; i++) res = [...res, ...dataset];
+    // return res;
     return dataset;
   };
 
