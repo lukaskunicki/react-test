@@ -65,4 +65,4 @@ const Table = ({ items }) => {
   );
 };
 
-export default React.memo(Table);
+export default Table;
