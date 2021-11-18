@@ -1,5 +1,6 @@
 import arrayDivider from "./helpers/arrayDivider";
 import classNameHelper from "./helpers/classNameHelper";
+import pathResolver from "./helpers/pathResolver";
 import versionChecker from "./helpers/versionChecker";
 
 // These tests ensure that the helper functions are working properly
@@ -56,4 +57,22 @@ test("Array divider", () => {
 
   beta.forEach((i) => expect(i.type).toEqual("beta"));
   mature.forEach((i) => expect(i.type).toEqual("mature"));
+});
+
+test("Path resolver", () => {
+  const initialData = {
+    id: 1,
+    name: "John",
+    location: {
+      city: "London",
+      country: "UK",
+    },
+  };
+
+  const outputData = [1, "John", "London", null];
+
+  const paths = ["id", "name", "location.city", "location.country.code.id"];
+  paths.forEach((path, index) =>
+    expect(pathResolver(initialData, path)).toEqual(outputData[index])
+  );
 });

@@ -24,8 +24,11 @@ const useAppsModule = () => {
     const uniqueTabs = [
       ...new Set(appsData.map((item) => item.type).filter((item) => item)),
     ];
-    const [matureApps, betaApps] = arrayDivider(appsData, (e) =>
-      versionChecker(e.version, DIVIDER_VERSION)
+    const [matureApps, betaApps] = arrayDivider(
+      appsData.filter((app) => app.version),
+      (e) => {
+        return versionChecker(e.version, DIVIDER_VERSION);
+      }
     );
 
     // Handle initial filtering
