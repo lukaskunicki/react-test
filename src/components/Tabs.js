@@ -18,11 +18,11 @@ const Tabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
         });
         return (
           <div
-            className={tabClasses}
             key={singleTab}
-            onClick={() => selectedTabHandler(singleTab)}
+            className={tabClasses}
             tabIndex={0}
             aria-label={`Choose ${singleTab} type`}
+            onClick={() => selectedTabHandler(singleTab)}
             onKeyDown={(e) => keyPressHandler(e, singleTab)}
           >
             {singleTab}

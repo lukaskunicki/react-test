@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import TableRow from "./TableRow";
 import useLoadMoreScroll from "../hooks/useLoadMoreScroll";
-import { isActionKey } from "../helpers/keyCodeChecker";
+import usePrevious from "../hooks/usePrevious";
 import pathResolver from "../helpers/pathResolver";
+import { isActionKey } from "../helpers/keyCodeChecker";
 
 const Table = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
@@ -14,6 +15,10 @@ const Table = ({ items, headers, columnPaths }) => {
     tableContainer,
     scrollData
   );
+  const prevLimit = usePrevious(itemsLimit);
+  // Prevent unnecessary processing of a huge dataset
+  const arraySlicer =
+    itemsLimit === prevLimit ? scrollData.defaultLimit : itemsLimit;
 
   const appClickHandler = (appName) => {
     if (!appName) return;
@@ -42,7 +47,7 @@ const Table = ({ items, headers, columnPaths }) => {
           </tr>
         </thead>
         <tbody>
-          {items.slice(0, itemsLimit).map((item) => {
+          {items.slice(0, arraySlicer).map((item) => {
             const columns = columnPaths.map((path) => pathResolver(item, path));
             return (
               <TableRow
@@ -60,4 +65,4 @@ const Table = ({ items, headers, columnPaths }) => {
   );
 };
 
-export default Table;
+export default React.memo(Table);

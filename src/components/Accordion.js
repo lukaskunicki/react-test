@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Table from "./Table";
 import MinusIcon from "./icons/MinusIcon";
 import PlusIcon from "./icons/PlusIcon";
-import { isToggleKey } from "../helpers/keyCodeChecker";
 import classNameHelper from "../helpers/classNameHelper";
+import { isToggleKey } from "../helpers/keyCodeChecker";
 import { columnsPaths, tableHeaders } from "../config/appDictionary";
-import pathResolver from "../helpers/pathResolver";
+
 const Accordion = ({ items, title }) => {
   const [expanded, setExpanded] = useState(false);
   const accordionClasses = classNameHelper("accordions__item__content", {
