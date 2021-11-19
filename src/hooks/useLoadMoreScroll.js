@@ -6,7 +6,6 @@ const useLoadMoreScroll = (elementRef, { defaultLimit, items }) => {
   const scrollHandler = (e) => {
     const element = e.target;
     const targetHeight = element.offsetHeight + element.scrollTop + 100;
-    // console.log(targetHeight, element.scrollHeight, itemsLimit, totalItems)
     if (targetHeight <= element.scrollHeight) return;
     if (itemsLimit < items.length)
       setItemsLimit((prevState) => prevState + 200);

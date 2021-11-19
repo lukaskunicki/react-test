@@ -53,6 +53,8 @@ const appsModuleReducer = (state, action) => {
       };
     case "SET_SELECTED_TAB":
       return { ...state, selectedTab: action.payload };
+    case "SET_ERROR":
+      return { ...state, error: action.payload };
     default:
       return { ...state };
   }

@@ -7,6 +7,14 @@ import useAppsModule from "./hooks/useAppsModule";
 const AppsModule = () => {
   const [state, filterAppData] = useAppsModule();
 
+  if (state.apps.length === 0) {
+    return (
+      <p className="output-msg">
+        {state.error ? "Failed to load data" : "Loading..."}
+      </p>
+    );
+  }
+
   return (
     <div className="container">
       <Tabs
