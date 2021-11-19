@@ -1,5 +1,3 @@
-@import "../variables/variables.scss";
-
 .accordions {
   padding: 50px 0;
   &__item {
@@ -10,15 +8,31 @@
     }
 
     &__title {
-      padding: 10px 5px;
-      cursor: pointer;
+      background: $color--white;
+      font-family: $font--main;
       display: flex;
       justify-content: space-between;
+      width: 100%;
+      border: none;
+      padding: 10px 5px;
+      cursor: pointer;
+      font-size: 18px;
+      position: relative;
 
-      &__icon {
-        display: flex;
-        align-items: center;
-        transform: scale(1.3);
+      &:after {
+        right: 20px;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        content: "";
+        background-size: cover;
+      }
+
+      &--expanded:after {
+        background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cg stroke='%23000'%3E%3Cellipse cx='8' cy='8' fill='%23fff' rx='7' ry='7'%3E%3C/ellipse%3E%3Cpath fill='none' d='M3.593 8.053L12.472 8.053'%3E%3C/path%3E%3Cpath fill='none' d='M3.593 8.053L12.472 8.053' transform='rotate(90 8.032 8.053)' %3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+      }
+      &--collapsed:after {
+        background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cg stroke='%23000'%3E%3Cellipse cx='8' cy='8' fill='%23fff' rx='7' ry='7'%3E%3C/ellipse%3E%3Cpath fill='none' d='M3.593 8.053L12.472 8.053'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
       }
     }
     &__content {

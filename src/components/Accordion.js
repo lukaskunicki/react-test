@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Table from "./Table";
-import MinusIcon from "./icons/MinusIcon";
-import PlusIcon from "./icons/PlusIcon";
 import classNameHelper from "../helpers/classNameHelper";
-import { isToggleKey } from "../helpers/keyCodeChecker";
 import { columnsPaths, tableHeaders } from "../config/appDictionary";
 
 const Accordion = ({ items, title }) => {
   const [expanded, setExpanded] = useState(false);
+  const titleClasses = classNameHelper("accordions__item__title", {
+    "accordions__item__title--expanded": expanded,
+    "accordions__item__title--collapsed": !expanded,
+  });
   const accordionClasses = classNameHelper("accordions__item__content", {
     "accordions__item__content--expanded": expanded,
   });
@@ -18,28 +19,11 @@ const Accordion = ({ items, title }) => {
     setExpanded(true);
   };
 
-  const keyDownHandler = (e) => {
-    if (!isToggleKey(e)) return;
-    expandedHandler();
-  };
-
   return (
-    <div
-      className="accordions__item"
-      tabIndex={0}
-      onKeyDown={keyDownHandler}
-      aria-expanded={expanded}
-    >
-      <div className="accordions__item__title" onClick={expandedHandler}>
-        <span className="accordions__item__title__caption">{title}</span>
-        <span className="accordions__item__title__icon">
-          {expanded ? (
-            <MinusIcon key="Minus icon" />
-          ) : (
-            <PlusIcon key="Plus icon" />
-          )}
-        </span>
-      </div>
+    <div className="accordions__item" aria-expanded={expanded}>
+      <button className={titleClasses} onClick={expandedHandler}>
+        {title}
+      </button>
       <div className={accordionClasses} aria-hidden={!expanded}>
         {expanded ? (
           <Table

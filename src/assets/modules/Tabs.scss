@@ -1,13 +1,13 @@
-@import "../variables/variables.scss";
-
 .tabs-container {
   display: flex;
 
   &__tab {
+    font-family: $font--main;
+    background: $color--white;
+    font-size: 16px;
     border: 1px solid $color--black;
     padding: 10px 25px;
     cursor: pointer;
-
     &--active {
       background: $color--grey--dark;
     }

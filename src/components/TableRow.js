@@ -12,13 +12,16 @@ const TableRow = ({
   };
 
   return (
-    <tr
-      tabIndex={0}
-      onClick={() => clickHandler(handlerParameter)}
-      onKeyDown={(e) => keyDownHandler(e, handlerParameter)}
-    >
+    <tr>
       {columns.map((col, index) => (
-        <td key={index}>{safeEmbed(col)}</td>
+        <td
+          tabIndex={0}
+          key={index}
+          onClick={() => clickHandler(handlerParameter)}
+          onKeyDown={(e) => keyDownHandler(e, handlerParameter)}
+        >
+          {safeEmbed(col)}
+        </td>
       ))}
     </tr>
   );

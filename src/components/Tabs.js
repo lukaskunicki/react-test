@@ -17,7 +17,7 @@ const Tabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
           "tabs-container__tab--active": selectedTab === singleTab,
         });
         return (
-          <div
+          <button
             key={singleTab}
             className={tabClasses}
             tabIndex={0}
@@ -26,7 +26,7 @@ const Tabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
             onKeyDown={(e) => keyPressHandler(e, singleTab)}
           >
             {singleTab}
-          </div>
+          </button>
         );
       })}
     </div>
