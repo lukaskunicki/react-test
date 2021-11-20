@@ -1,4 +1,4 @@
-const arrayDivider = (array, divider) => {
+const arrayDividerHelper = (array, divider) => {
   return array.reduce(
     ([pass, fail], elem) => {
       return divider(elem) ? [[...pass, elem], fail] : [pass, [...fail, elem]];
@@ -7,4 +7,4 @@ const arrayDivider = (array, divider) => {
   );
 };
 
-export default arrayDivider;
+export default arrayDividerHelper;

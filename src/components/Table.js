@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
-import TableRow from "./TableRow";
+import TableRow from "./partials/TableRow";
 import useLoadMoreScroll from "../hooks/useLoadMoreScroll";
 import usePrevious from "../hooks/usePrevious";
-import pathResolver from "../helpers/pathResolver";
-import { isActionKey } from "../helpers/keyCodeChecker";
+import pathResolveHelper from "../helpers/pathResolveHelper";
+import { isActionKey } from "../helpers/keyCodeHelper";
 
 const Table = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
@@ -48,7 +48,9 @@ const Table = ({ items, headers, columnPaths }) => {
         </thead>
         <tbody>
           {items.slice(0, arraySlicer).map((item) => {
-            const columns = columnPaths.map((path) => pathResolver(item, path));
+            const columns = columnPaths.map((path) =>
+              pathResolveHelper(item, path)
+            );
             return (
               <TableRow
                 clickHandler={appClickHandler}

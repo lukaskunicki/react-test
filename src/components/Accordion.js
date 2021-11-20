@@ -1,30 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import Table from "./Table";
-import classNameHelper from "../helpers/classNameHelper";
 import { columnsPaths, tableHeaders } from "../config/appDictionary";
+import classNameHelper from "../helpers/classNameHelper";
+import useExpanded from "../hooks/useExpanded";
 
 const Accordion = ({ items, title }) => {
-  const [expanded, setExpanded] = useState(false);
-  const titleClasses = classNameHelper("accordions__item__title", {
-    "accordions__item__title--expanded": expanded,
-    "accordions__item__title--collapsed": !expanded,
-  });
-  const accordionClasses = classNameHelper("accordions__item__content", {
-    "accordions__item__content--expanded": expanded,
-  });
+  const { expanded, expandedHandler } = useExpanded(false);
 
-  const expandedHandler = () => {
-    if (window.location.hash.length) window.history.pushState(null, null, " ");
-    if (expanded) return setExpanded(false);
-    setExpanded(true);
-  };
+  const itemClasses = classNameHelper("accordions__item", {
+    "accordions__item--expanded": expanded,
+    "accordions__item--collapsed": !expanded,
+  });
 
   return (
-    <div className="accordions__item" aria-expanded={expanded}>
-      <button className={titleClasses} onClick={expandedHandler}>
+    <div className={itemClasses} aria-expanded={expanded}>
+      <button className="accordions__item__title" onClick={expandedHandler}>
         {title}
       </button>
-      <div className={accordionClasses} aria-hidden={!expanded}>
+      <div className="accordions__item__content" aria-hidden={!expanded}>
         {expanded ? (
           <Table
             items={items}

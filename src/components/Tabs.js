@@ -1,13 +1,7 @@
 import React from "react";
-import { isActionKey } from "../helpers/keyCodeChecker";
 import classNameHelper from "../helpers/classNameHelper";
 
 const Tabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
-  const keyPressHandler = (e, singleTab) => {
-    if (!isActionKey(e)) return;
-    selectedTabHandler(singleTab);
-  };
-
   return (
     <div className="tabs-container">
       {tabsData.map((singleTab) => {
@@ -23,7 +17,6 @@ const Tabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
             tabIndex={0}
             aria-label={`Choose ${singleTab} type`}
             onClick={() => selectedTabHandler(singleTab)}
-            onKeyDown={(e) => keyPressHandler(e, singleTab)}
           >
             {singleTab}
           </button>

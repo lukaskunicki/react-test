@@ -1,8 +1,8 @@
 import React from "react";
-import "./assets/AppsModule.scss";
-import Tabs from "./components/Tabs";
-import Accordion from "./components/Accordion";
-import useAppsModule from "./hooks/useAppsModule";
+import Tabs from "./Tabs";
+import Accordion from "./Accordion";
+import useAppsModule from "../hooks/useAppsModule";
+import "../assets/AppsModule.scss";
 
 const AppsModule = () => {
   const [state, filterAppData] = useAppsModule();

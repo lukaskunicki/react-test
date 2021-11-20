@@ -6,7 +6,7 @@ const getFloorValue = (num) => {
 // In this case we could also parse the app version to integer value,
 // however such a solution wouldn't work if the divider version would be 2.0.3 or 4.0.5,
 // so this solution is more universal
-const versionChecker = (oldVer, defaultVersion) => {
+const versionCheckHelper = (oldVer, defaultVersion) => {
   if (!oldVer) return null;
   // iterate through the version numbers
   const oldParts = oldVer.split(".");
@@ -16,4 +16,4 @@ const versionChecker = (oldVer, defaultVersion) => {
   return true;
 };
 
-export default versionChecker;
+export default versionCheckHelper;

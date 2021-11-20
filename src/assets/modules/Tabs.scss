@@ -1,6 +1,7 @@
 .tabs-container {
   display: flex;
-
+  width: fit-content;
+  box-shadow: 5px 5px 0 -1px $color--black;
   &__tab {
     font-family: $font--main;
     background: $color--white;

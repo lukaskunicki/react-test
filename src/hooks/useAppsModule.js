@@ -1,8 +1,8 @@
 import { useEffect, useReducer, useCallback } from "react";
-import dataset from "../dataset";
+import dataset from "../config/dataset";
 import appsModuleReducer from "../reducers/appsModuleReducer";
-import arrayDivider from "../helpers/arrayDivider";
-import versionChecker from "../helpers/versionChecker";
+import arrayDividerHelper from "../helpers/arrayDividerHelper";
+import versionCheckHelper from "../helpers/versionCheckHelper";
 import appsFilteringHelper from "../helpers/appsFilteringHelper";
 
 const initialState = {
@@ -26,10 +26,10 @@ const useAppsModule = () => {
     const uniqueTabs = [
       ...new Set(appsData.map((item) => item.type).filter((item) => item)),
     ];
-    const [matureApps, betaApps] = arrayDivider(
+    const [matureApps, betaApps] = arrayDividerHelper(
       appsData.filter((app) => app.version),
       (e) => {
-        return versionChecker(e.version, DIVIDER_VERSION);
+        return versionCheckHelper(e.version, DIVIDER_VERSION);
       }
     );
 
@@ -50,6 +50,8 @@ const useAppsModule = () => {
   }, [state.apps]);
 
   const filterAppData = (selectedTab) => {
+    if (selectedTab === state.selectedTab) return;
+    window.history.pushState(null, null, " ");
     const newApps = appsFilteringHelper(state.apps, selectedTab);
     dispatch({
       type: "FILTER_APPS",
@@ -62,8 +64,8 @@ const useAppsModule = () => {
   const fetchDataSet = async () => {
     // We would normally fetch an API with async call and handle possible errors
     try {
-      const res = await dataset;
-      return res;
+      const response = await dataset;
+      return response;
     } catch (e) {
       console.log("Error fetching the data", e);
       return false;

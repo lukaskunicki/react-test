@@ -1,7 +1,7 @@
-import arrayDivider from "./helpers/arrayDivider";
-import classNameHelper from "./helpers/classNameHelper";
-import pathResolver from "./helpers/pathResolver";
-import versionChecker from "./helpers/versionChecker";
+import arrayDivider from "../helpers/arrayDividerHelper";
+import classNameHelper from "../helpers/classNameHelper";
+import pathResolver from "../helpers/pathResolveHelper";
+import versionChecker from "../helpers/versionCheckHelper";
 
 // These tests ensure that the helper functions are working properly
 
