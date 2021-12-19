@@ -3,6 +3,7 @@ import Table from "./Table";
 import { columnsPaths, tableHeaders } from "../config/appDictionary";
 import classNameHelper from "../helpers/classNameHelper";
 import useExpanded from "../hooks/useExpanded";
+import PropTypes from "prop-types";
 
 const Accordion = ({ items, title }) => {
   const { expanded, expandedHandler } = useExpanded(false);
@@ -32,3 +33,8 @@ const Accordion = ({ items, title }) => {
 };
 
 export default React.memo(Accordion);
+
+Accordion.propTypes = {
+  items: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+};

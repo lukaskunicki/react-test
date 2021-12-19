@@ -4,6 +4,7 @@ import useLoadMoreScroll from "../hooks/useLoadMoreScroll";
 import pathResolveHelper from "../helpers/pathResolveHelper";
 import { isActionKey } from "../helpers/keyCodeHelper";
 import appPickingHelper from "../helpers/appPickingHelper";
+import PropTypes from "prop-types";
 
 const Table = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
@@ -59,3 +60,9 @@ const Table = ({ items, headers, columnPaths }) => {
 };
 
 export default React.memo(Table);
+
+Table.propTypes = {
+  items: PropTypes.array.isRequired,
+  headers: PropTypes.array.isRequired,
+  columnPaths: PropTypes.array.isRequired,
+};
