@@ -1,4 +1,6 @@
 import React from "react";
+import safeEmbedHelper from "../../helpers/safeEmbedHelper";
+import uuid from "react-uuid";
 
 const TableRow = ({
   clickHandler,
@@ -6,21 +8,16 @@ const TableRow = ({
   handlerParameter,
   columns,
 }) => {
-  // Helper function for embedding the string values safely
-  const safeEmbed = (value) => {
-    return value || "-";
-  };
-
   return (
     <tr>
-      {columns.map((col, index) => (
+      {columns.map((col) => (
         <td
           tabIndex={0}
-          key={index}
+          key={uuid()}
           onClick={() => clickHandler(handlerParameter)}
           onKeyDown={(e) => keyDownHandler(e, handlerParameter)}
         >
-          {safeEmbed(col)}
+          {safeEmbedHelper(col)}
         </td>
       ))}
     </tr>

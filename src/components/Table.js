@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import TableRow from "./partials/TableRow";
 import useLoadMoreScroll from "../hooks/useLoadMoreScroll";
-import usePrevious from "../hooks/usePrevious";
 import pathResolveHelper from "../helpers/pathResolveHelper";
 import { isActionKey } from "../helpers/keyCodeHelper";
+import appPickingHelper from "../helpers/appPickingHelper";
 
 const Table = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
@@ -15,19 +15,10 @@ const Table = ({ items, headers, columnPaths }) => {
     tableContainer,
     scrollData
   );
-  const prevLimit = usePrevious(itemsLimit);
-  // Prevent unnecessary processing of a huge dataset
-  const arraySlicer =
-    itemsLimit === prevLimit ? scrollData.defaultLimit : itemsLimit;
-
-  const appClickHandler = (appName) => {
-    if (!appName) return;
-    window.location.hash = appName;
-  };
 
   const keyDownHandler = (e, appName) => {
     if (!isActionKey(e)) return;
-    appClickHandler(appName);
+    appPickingHelper(appName);
   };
 
   return (
@@ -47,13 +38,13 @@ const Table = ({ items, headers, columnPaths }) => {
           </tr>
         </thead>
         <tbody>
-          {items.slice(0, arraySlicer).map((item) => {
+          {items.slice(0, itemsLimit).map((item) => {
             const columns = columnPaths.map((path) =>
               pathResolveHelper(item, path)
             );
             return (
               <TableRow
-                clickHandler={appClickHandler}
+                clickHandler={appPickingHelper}
                 keyDownHandler={keyDownHandler}
                 handlerParameter={item.app}
                 columns={columns}

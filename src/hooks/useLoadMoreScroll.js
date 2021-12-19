@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 const useLoadMoreScroll = (elementRef, { defaultLimit, items }) => {
-  const [itemsLimit, setItemsLimit] = useState(100);
+  const [itemsLimit, setItemsLimit] = useState(defaultLimit);
 
   const scrollHandler = (e) => {
-    const element = e.target;
-    const targetHeight = element.offsetHeight + element.scrollTop + 100;
-    if (targetHeight <= element.scrollHeight) return;
-    if (itemsLimit < items.length)
-      setItemsLimit((prevState) => prevState + 200);
+    const { scrollHeight, scrollTop, clientHeight } = e.target;
+    const scrollPosition = scrollHeight - scrollTop;
+    const bottomReached = scrollPosition <= clientHeight;
+    if (!bottomReached) return;
+    setItemsLimit((prevState) => prevState + 200);
   };
 
   useEffect(() => {

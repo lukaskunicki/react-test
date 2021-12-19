@@ -8,7 +8,7 @@ const useExpanded = (initial) => {
     setExpanded(!expanded);
   };
 
-  return { expanded, setExpanded, expandedHandler };
+  return { expanded, expandedHandler };
 };
 
 export default useExpanded;

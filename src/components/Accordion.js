@@ -31,4 +31,4 @@ const Accordion = ({ items, title }) => {
   );
 };
 
-export default Accordion;
+export default React.memo(Accordion);
