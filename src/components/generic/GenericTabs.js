@@ -1,8 +1,8 @@
 import React from "react";
-import classNameHelper from "../helpers/classNameHelper";
+import classNameHelper from "../../helpers/classNameHelper";
 import PropTypes from "prop-types";
 
-const Tabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
+const GenericTabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
   return (
     <div className="tabs-container">
       {tabsData.map((singleTab) => {
@@ -25,9 +25,9 @@ const Tabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
   );
 };
 
-export default Tabs;
+export default GenericTabs;
 
-Tabs.propTypes = {
+GenericTabs.propTypes = {
   tabsData: PropTypes.array.isRequired,
   selectedTab: PropTypes.string.isRequired,
   selectedTabHandler: PropTypes.func.isRequired,
