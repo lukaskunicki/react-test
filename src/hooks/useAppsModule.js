@@ -4,6 +4,7 @@ import appsModuleReducer from "../reducers/appsModuleReducer";
 import arrayDividerHelper from "../helpers/arrayDividerHelper";
 import versionCheckHelper from "../helpers/versionCheckHelper";
 import appsFilteringHelper from "../helpers/appsFilteringHelper";
+import appsModuleReducerActions from "../config/appsModuleReducerActions";
 
 const initialState = {
   selectedTab: 0,
@@ -22,7 +23,11 @@ const useAppsModule = () => {
     // so let's make sure the fetch won't be executed without a need
     if (state.apps.length) return;
     const appsData = await fetchDataSet();
-    if (!appsData) return dispatch({ type: "SET_ERROR", payload: true });
+    if (!appsData)
+      return dispatch({
+        type: appsModuleReducerActions.SET_ERROR,
+        payload: true,
+      });
     const uniqueTabs = [
       ...new Set(appsData.map((item) => item.type).filter((item) => item)),
     ];
@@ -39,7 +44,7 @@ const useAppsModule = () => {
     );
 
     dispatch({
-      type: "INITIALIZE_APPS",
+      type: appsModuleReducerActions.INITIALIZE_APPS,
       payload: {
         tabsData: uniqueTabs,
         beta: betaApps,
@@ -54,7 +59,7 @@ const useAppsModule = () => {
     window.history.pushState(null, null, " ");
     const newApps = appsFilteringHelper(state.apps, selectedTab);
     dispatch({
-      type: "FILTER_APPS",
+      type: appsModuleReducerActions.FILTER_APPS,
       payload: {
         ...newApps,
       },
