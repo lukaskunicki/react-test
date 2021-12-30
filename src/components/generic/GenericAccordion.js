@@ -1,11 +1,11 @@
 import React from "react";
-import Table from "./Table";
-import { columnsPaths, tableHeaders } from "../config/appDictionary";
-import classNameHelper from "../helpers/classNameHelper";
-import useExpanded from "../hooks/useExpanded";
+import GenericTable from "./GenericTable";
+import { columnsPaths, tableHeaders } from "../../config/appDictionary";
+import classNameHelper from "../../helpers/classNameHelper";
+import useExpanded from "../../hooks/useExpanded";
 import PropTypes from "prop-types";
 
-const Accordion = ({ items, title }) => {
+const GenericAccordion = ({ items, title }) => {
   const { expanded, expandedHandler } = useExpanded(false);
 
   const itemClasses = classNameHelper("accordions__item", {
@@ -20,7 +20,7 @@ const Accordion = ({ items, title }) => {
       </button>
       <div className="accordions__item__content" aria-hidden={!expanded}>
         {expanded ? (
-          <Table
+          <GenericTable
             items={items}
             headers={tableHeaders}
             columnPaths={columnsPaths}
@@ -32,9 +32,9 @@ const Accordion = ({ items, title }) => {
   );
 };
 
-export default React.memo(Accordion);
+export default React.memo(GenericAccordion);
 
-Accordion.propTypes = {
+GenericAccordion.propTypes = {
   items: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
 };

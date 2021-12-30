@@ -1,9 +1,9 @@
 import React from "react";
-import safeEmbedHelper from "../../helpers/safeEmbedHelper";
+import safeEmbedHelper from "../../../helpers/safeEmbedHelper";
 import uuid from "react-uuid";
 import PropTypes from "prop-types";
 
-const TableRow = ({
+const GenericTableRow = ({
   clickHandler,
   keyDownHandler,
   handlerParameter,
@@ -25,9 +25,9 @@ const TableRow = ({
   );
 };
 
-export default React.memo(TableRow);
+export default React.memo(GenericTableRow);
 
-TableRow.propTypes = {
+GenericTableRow.propTypes = {
   clickHandler: PropTypes.func.isRequired,
   keyDownHandler: PropTypes.func.isRequired,
   handlerParameter: PropTypes.string.isRequired,

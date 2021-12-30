@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
-import TableRow from "./partials/TableRow";
-import useLoadMoreScroll from "../hooks/useLoadMoreScroll";
-import pathResolveHelper from "../helpers/pathResolveHelper";
-import { isActionKey } from "../helpers/keyCodeHelper";
-import appPickingHelper from "../helpers/appPickingHelper";
+import TableRow from "./partials/GenericTableRow";
+import useLoadMoreScroll from "../../hooks/useLoadMoreScroll";
+import pathResolveHelper from "../../helpers/pathResolveHelper";
+import { isActionKey } from "../../helpers/keyCodeHelper";
+import appPickingHelper from "../../helpers/appPickingHelper";
 import PropTypes from "prop-types";
 
-const Table = ({ items, headers, columnPaths }) => {
+const GenericTable = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
   const scrollData = {
     defaultLimit: 100,
@@ -59,9 +59,9 @@ const Table = ({ items, headers, columnPaths }) => {
   );
 };
 
-export default React.memo(Table);
+export default React.memo(GenericTable);
 
-Table.propTypes = {
+GenericTable.propTypes = {
   items: PropTypes.array.isRequired,
   headers: PropTypes.array.isRequired,
   columnPaths: PropTypes.array.isRequired,

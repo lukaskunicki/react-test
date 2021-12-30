@@ -1,9 +1,9 @@
 import React from "react";
-import Accordion from "./Accordion";
 import useAppsModule from "../hooks/useAppsModule";
 import "../assets/AppsModule.scss";
 import { AppsProvider } from "../context/AppsContext";
 import AppsTabs from "./exclusive/AppsTabs";
+import AppsAccordions from "./exclusive/AppsAccordions";
 
 const AppsModule = () => {
   const [state] = useAppsModule();
@@ -20,11 +20,7 @@ const AppsModule = () => {
     <AppsProvider>
       <div className="container">
         <AppsTabs />
-        <div className="accordions">
-          {state.filteredApps.map((app) => (
-            <Accordion items={app.items} title={app.title} key={app.key} />
-          ))}
-        </div>
+        <AppsAccordions />
       </div>
     </AppsProvider>
   );
