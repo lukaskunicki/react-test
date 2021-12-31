@@ -1,15 +1,8 @@
-import React, { useContext } from "react";
+import React, { createContext } from "react";
 import useAppsModule from "../hooks/useAppsModule";
+import useAppsContext from "../hooks/useAppsContext";
 
-const initialState = {
-  selectedTab: 0,
-  tabsData: [],
-  apps: [],
-  filteredApps: [],
-  error: null,
-};
-
-const AppsContext = React.createContext(initialState);
+const AppsContext = createContext();
 
 const AppsProvider = (props) => {
   const [state, filterAppData] = useAppsModule();
@@ -27,12 +20,4 @@ const AppsProvider = (props) => {
   );
 };
 
-const useAppsContext = () => {
-  const context = useContext(AppsContext);
-  if (context === undefined) {
-    throw new Error("AppsContext needs to be used within the Apps context");
-  }
-  return context;
-};
-
-export { AppsProvider, useAppsContext };
+export { AppsContext, AppsProvider, useAppsContext };
