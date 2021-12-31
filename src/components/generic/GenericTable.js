@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
-import TableRow from "./partials/GenericTableRow";
+import GenericTableRow from "./partials/GenericTableRow";
 import useLoadMoreScroll from "../../hooks/useLoadMoreScroll";
 import pathResolveHelper from "../../helpers/pathResolveHelper";
-import { isActionKey } from "../../helpers/keyCodeHelper";
-import appPickingHelper from "../../helpers/appPickingHelper";
 import PropTypes from "prop-types";
 
 const GenericTable = ({ items, headers, columnPaths }) => {
@@ -16,11 +14,6 @@ const GenericTable = ({ items, headers, columnPaths }) => {
     tableContainer,
     scrollData
   );
-
-  const keyDownHandler = (e, appName) => {
-    if (!isActionKey(e)) return;
-    appPickingHelper(appName);
-  };
 
   return (
     <div
@@ -44,12 +37,10 @@ const GenericTable = ({ items, headers, columnPaths }) => {
               pathResolveHelper(item, path)
             );
             return (
-              <TableRow
-                clickHandler={appPickingHelper}
-                keyDownHandler={keyDownHandler}
-                handlerParameter={item.app}
-                columns={columns}
+              <GenericTableRow
                 key={item.id}
+                rowKey={item.app}
+                columns={columns}
               />
             );
           })}

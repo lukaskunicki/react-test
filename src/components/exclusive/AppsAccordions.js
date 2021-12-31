@@ -1,6 +1,8 @@
 import React from "react";
 import GenericAccordion from "../generic/GenericAccordion";
 import { useAppsContext } from "../../context/AppsContext";
+import GenericTable from "../generic/GenericTable";
+import { columnsPaths, tableHeaders } from "../../config/appDictionary";
 
 const AppsAccordions = () => {
   const [state] = useAppsContext();
@@ -8,7 +10,13 @@ const AppsAccordions = () => {
   return (
     <div className="accordions">
       {state.filteredApps.map((app) => (
-        <GenericAccordion items={app.items} title={app.title} key={app.key} />
+        <GenericAccordion title={app.title} key={app.key}>
+          <GenericTable
+            items={app.items}
+            headers={tableHeaders}
+            columnPaths={columnsPaths}
+          />
+        </GenericAccordion>
       ))}
     </div>
   );
