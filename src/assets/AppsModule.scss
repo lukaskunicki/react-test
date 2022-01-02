@@ -14,3 +14,13 @@
   font-family: $font--main;
   font-size: 26px;
 }
+.output-details {
+  background: $color--obsidian;
+  padding: 10px 20px;
+  color: $color--white--code;
+
+  code {
+    font-family: $font--code;
+    font-size: 12px;
+  }
+}

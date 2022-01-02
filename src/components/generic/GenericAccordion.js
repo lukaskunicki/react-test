@@ -27,5 +27,5 @@ export default React.memo(GenericAccordion);
 
 GenericAccordion.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
