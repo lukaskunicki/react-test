@@ -6,7 +6,7 @@ import { isActionKey } from "../../../helpers/keyCodeHelper";
 import appPickingHelper from "../../../helpers/appPickingHelper";
 
 const GenericTableRow = ({ rowKey, columns }) => {
-  const keyDownHandler = (e, appName) => {
+  const chooseAppFromKeyboard = (e, appName) => {
     if (!isActionKey(e)) return;
     appPickingHelper(appName);
   };
@@ -18,7 +18,7 @@ const GenericTableRow = ({ rowKey, columns }) => {
           tabIndex={0}
           key={uuid()}
           onClick={() => appPickingHelper(rowKey)}
-          onKeyDown={(e) => keyDownHandler(e, rowKey)}
+          onKeyDown={(e) => chooseAppFromKeyboard(e, rowKey)}
         >
           {safeEmbedHelper(col)}
         </td>

@@ -1,6 +1,7 @@
 import React from "react";
 import classNameHelper from "../../helpers/classNameHelper";
 import PropTypes from "prop-types";
+import uuid from "react-uuid";
 
 const GenericTabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
   return (
@@ -11,7 +12,7 @@ const GenericTabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
         });
         return (
           <button
-            key={singleTab}
+            key={uuid()}
             className={tabClasses}
             tabIndex={0}
             aria-label={`Choose ${singleTab} type`}
@@ -25,7 +26,7 @@ const GenericTabs = ({ tabsData, selectedTab, selectedTabHandler }) => {
   );
 };
 
-export default GenericTabs;
+export default React.memo(GenericTabs);
 
 GenericTabs.propTypes = {
   tabsData: PropTypes.array.isRequired,

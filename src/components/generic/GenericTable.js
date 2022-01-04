@@ -3,11 +3,12 @@ import GenericTableRow from "./partials/GenericTableRow";
 import useLoadMoreScroll from "../../hooks/useLoadMoreScroll";
 import pathResolveHelper from "../../helpers/pathResolveHelper";
 import PropTypes from "prop-types";
+import uuid from "react-uuid";
 
 const GenericTable = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
   const scrollData = {
-    defaultLimit: 100,
+    defaultMaxLimit: 100,
     items: items,
   };
   const { itemsLimit, scrollHandler } = useLoadMoreScroll(
@@ -25,7 +26,7 @@ const GenericTable = ({ items, headers, columnPaths }) => {
         <thead>
           <tr>
             {headers.map((header) => (
-              <th key={header} scope="col">
+              <th key={uuid()} scope="col">
                 {header}
               </th>
             ))}

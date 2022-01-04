@@ -6,12 +6,12 @@ import AppsAccordions from "./exclusive/AppsAccordions";
 
 const AppsModule = () => {
   return (
-    <AppsProvider>
-      <div className="container">
+    <div className="container">
+      <AppsProvider>
         <AppsTabs />
         <AppsAccordions />
-      </div>
-    </AppsProvider>
+      </AppsProvider>
+    </div>
   );
 };
 
