@@ -11,7 +11,9 @@ const AppsProvider = (props) => {
     <AppsContext.Provider value={contextValue} {...props}>
       {state.apps.length === 0 ? (
         <p className="output-msg">
-          {state.error ? "Failed to load data" : "Loading..."}
+          {state.error
+            ? "Sorry, There are no apps available currently"
+            : "Loading..."}
         </p>
       ) : (
         props.children

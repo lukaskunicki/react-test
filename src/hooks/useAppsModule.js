@@ -23,7 +23,7 @@ const useAppsModule = () => {
     // so let's make sure the fetch won't be executed without a need
     if (state.apps.length) return;
     const appsData = await fetchDataSet();
-    if (!appsData)
+    if (!appsData?.length)
       return dispatch({
         type: appsModuleReducerActions.SET_ERROR,
         payload: true,
