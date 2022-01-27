@@ -4,11 +4,11 @@ import useAppsContext from "../hooks/useAppsContext";
 
 const AppsContext = createContext();
 
-const AppsProvider = (props) => {
+const AppsProvider = ({ children }) => {
   const [state, filterAppData] = useAppsModule();
   const contextValue = [state, filterAppData];
   return (
-    <AppsContext.Provider value={contextValue} {...props}>
+    <AppsContext.Provider value={contextValue}>
       {state.apps.length === 0 ? (
         <p className="output-msg">
           {state.error
@@ -16,7 +16,7 @@ const AppsProvider = (props) => {
             : "Loading..."}
         </p>
       ) : (
-        props.children
+        children
       )}
     </AppsContext.Provider>
   );

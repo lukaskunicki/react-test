@@ -3,7 +3,6 @@ import GenericTableRow from "./partials/GenericTableRow";
 import useLoadMoreScroll from "../../hooks/useLoadMoreScroll";
 import pathResolveHelper from "../../helpers/pathResolveHelper";
 import PropTypes from "prop-types";
-import uuid from "react-uuid";
 
 const GenericTable = ({ items, headers, columnPaths }) => {
   const tableContainer = useRef(null);
@@ -26,7 +25,7 @@ const GenericTable = ({ items, headers, columnPaths }) => {
         <thead>
           <tr>
             {headers.map((header) => (
-              <th key={uuid()} scope="col">
+              <th key={header} scope="col">
                 {header}
               </th>
             ))}
